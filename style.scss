@@ -1,0 +1,38 @@
+//creacion de variables, se usa el signo $
+$colorCaja:#00ff2a;
+$colorContenido:#fff;
+$fuenteCaja:cursive;
+$colorCaja3:steelblue;
+$anchoCaja3:200px;
+$plantilla:(Fondo:#c0c0c0, Letra:#000, Ancho:150px, Largo:150px);
+$listaCaja1:(Fondo:#f81010, Letra:rgb(226, 226, 226), Ancho:150px, Largo:150px);
+$listaCaja3:(Fondo:#4682b4, Letra:rgb(130, 213, 135), Ancho:200px, Largo:200px);
+$listaCaja2:(Fondo:#800080, Letra:$colorCaja,Largo:250px);
+
+@use "sass:map";
+
+@mixin tamanoCaja($arg:$plantilla){
+    $data: map-merge($plantilla, $arg );
+    background: map-get($data, "Fondo");
+    color: map-get($data, "Letra");
+    width: map-get($data, "Ancho");
+    height: map-get($data, "Largo");
+    margin-bottom: 5px;
+}
+.box{
+    font-family: $fuenteCaja;
+    font-weight: bold;
+    display: inline-block;
+        .box-1, .box-2, .box-3, .box-4,.box-5{
+            @include tamanoCaja;
+        }
+        .box-1{
+            @include tamanoCaja($listaCaja1)
+        }
+        .box-3{
+            @include tamanoCaja($listaCaja3);
+        }
+        .box-2{
+            @include tamanoCaja($listaCaja2);
+        }
+}
